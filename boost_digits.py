@@ -47,9 +47,7 @@ for iter in range(niter):
     # Find the best weak learner
     d, p, theta, correct = findWeakLearner(X_train, t_train, weights)
 
-    ###########################################################
-    ##################### Fill in #############################
-    ###########################################################
+    # alpha = 0
     err = weights @ (1 - correct) / weights.sum()
     if err > 0.5:
         break
@@ -58,9 +56,6 @@ for iter in range(niter):
 
     weights = weights * np.exp(alpha.reshape(1, 1) @ (1 - correct).reshape(1, 500))
     weights = weights/weights.sum()
-    ###########################################################
-    ##################### End fill in #########################
-    ###########################################################
 
     classifier['alpha'][iter] = alpha
     classifier['d'][iter, :] = d
